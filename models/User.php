@@ -3,17 +3,15 @@ class User {
     private $id;
     private $username;
     private $email;
-    private $rol;
-    private $products;
+    private $role;
     private $avatar;
 
-    public function __construct($id, $username, $email, $rol, $avatar) {
+    public function __construct($id, $username, $email, $role, $avatar) {
         $this->id = $id;
         $this->username = $username;
         $this->email = $email;
-        $this->rol = $rol;
+        $this->role = $role;
         $this->avatar = $avatar;
-        $this->products = array();
     }
 
     public function getId() {
@@ -28,13 +26,10 @@ class User {
         return $this->email;
     }
 
-    public function getRol() {
-        return $this->rol;
+    public function getRole() {
+        return $this->role;
     }
 
-    public function getProducts() {
-        return $this->products;
-    }
 
     public function getAvatar() {
         return $this->avatar;
