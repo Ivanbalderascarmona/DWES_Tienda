@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Registro de usuario</h1>
-    <form action="index.php?c=user&action=register">
+    <form action="index.php?c=user&action=saveRegister" method="POST" enctype="multipart/form-data">
         <input type="text" name="username" placeholder="Nombre de usuario"> 
         <input type="password" name="password" placeholder="Contraseña">
         <input type="email" name="email" placeholder="Email">
+        <input type="file" name="avatar">
         <input type="submit" value="register">
     </form>
+    <a href="index.php?c=user&action=login">¿Ya tienes una cuenta? ¡Inicia sesión!</a>
 </body>
 </html>
