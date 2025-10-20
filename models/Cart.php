@@ -1,16 +1,16 @@
 <?php
 class Cart {
     private $id;
-    private $idOrder;
     private $idUser;
-    private $precio;
+    private $totalPrice;
+    private $datetime;
     private $pagado;
     
-    public function __construct($id, $idOrder, $idUser, $precio, $pagado) {
+    public function __construct($id, $idUser, $totalPrice, $datetime, $pagado) {
         $this->id = $id;
-        $this->idOrder = $idOrder;
         $this->idUser = $idUser;
-        $this->precio = $precio;
+        $this->totalPrice = $totalPrice;
+        $this->datetime = $datetime;
         $this->pagado = $pagado;
     }
 
@@ -18,16 +18,16 @@ class Cart {
         return $this->id;
     }
 
-    public function getIdOrder() {
-        return $this->idOrder;
-    }
-
     public function getIdUser() {
         return $this->idUser;
     }
 
-    public function getPrecio() {
-        return $this->precio;
+    public function getTotalPrice() {
+        return $this->totalPrice;
+    }
+
+    public function getDateTime() {
+        return $this->datetime;
     }
 
     public function getPagado() {

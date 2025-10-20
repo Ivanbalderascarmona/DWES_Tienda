@@ -1,10 +1,10 @@
 <?php
 
 require_once("models/User.php");
-require_once("models/CartItems.php");
+require_once("models/CartDetails.php");
 require_once("models/Cart.php");
-require_once("models/Orders.php");
 require_once("models/Products.php");
+require_once("models/UserRepository.php");
 
 session_start();
 

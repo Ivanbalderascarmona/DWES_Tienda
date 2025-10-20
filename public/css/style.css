@@ -1,0 +1,191 @@
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ====== GENERAL ====== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #cfd7e6;
+    color: #333;
+}
+
+/* ====== HEADER ====== */
+header {
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ====== NAVBAR ====== */
+nav {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* ====== GRUPOS DE MENÚ ====== */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #4f46e5;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: #1e40af;
+    font-weight: 600;
+}
+
+/* ====== BUSCADOR ====== */
+.search-form {
+    display: flex;
+    align-items: center;
+    background: #f1f3f6;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.search-form input {
+    border: none;
+    padding: 0.6rem 1rem;
+    outline: none;
+    background: transparent;
+    width: 200px;
+}
+
+.search-form button {
+    background: #4f46e5;
+    border: none;
+    color: white;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.search-form button:hover {
+    background: #3730a3;
+}
+
+/* ====== RESPONSIVO ====== */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-left {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .search-form {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+}
+
+
+/* ====== FORMULARIO DE REGISTRO ====== */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    color: white;
+    padding: 2rem;
+}
+
+.register-container h1 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ====== FORM ====== */
+.register-form {
+    background-color: white;
+    color: #333;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="email"],
+.register-form input[type="file"] {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.2s ease;
+}
+
+.register-form input:focus {
+    outline: none;
+    border-color: #4f46e5;
+}
+
+/* ====== BOTÓN ====== */
+.register-form input[type="submit"] {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.register-form input[type="submit"]:hover {
+    background-color: #3730a3;
+}
+
+/* ====== ENLACE LOGIN ====== */
+.login-link {
+    margin-top: 1rem;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.login-link:hover {
+    color: #e0e0ff;
+}
