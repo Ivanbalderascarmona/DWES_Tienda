@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
-    <h1>Registro de usuario</h1>
-    <form action="index.php?c=user&action=saveRegister" method="POST" enctype="multipart/form-data">
-        <input type="text" name="username" placeholder="Nombre de usuario"> 
-        <input type="password" name="password" placeholder="Contraseña">
-        <input type="email" name="email" placeholder="Email">
-        <input type="file" name="avatar">
-        <input type="submit" value="register">
-    </form>
-    <a href="index.php?c=user&action=login">¿Ya tienes una cuenta? ¡Inicia sesión!</a>
+    <div class="register-container">
+        <h1>Registro de usuario</h1>
+        <form class="register-form" action="index.php?c=user&action=saveRegister" method="POST" enctype="multipart/form-data">
+            <input type="text" name="username" placeholder="Nombre de usuario">
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="email" name="email" placeholder="Email">
+            <input type="file" name="avatar" accept="image/*">
+            <input type="submit" value="Registrarse">
+        </form>
+        <a class="login-link" href="index.php?action=login">¿Ya tienes una cuenta? ¡Inicia sesión!</a>
+        <a class="login-link" href="index.php">Página principal</a>
+    </div>
 </body>
 </html>

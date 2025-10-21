@@ -24,10 +24,8 @@ class UserRepository{
         $q = 'INSERT INTO users (username, password, email, role, avatar) VALUES ("'.$username.'", "'.md5($password).'" ,"'.$email.'", 0, "' . $avatar . '")';
         $db->query($q);
         if($db->insert_id){
-            $success = "Usuario registrado correctamente. Ya puedes iniciar sesión.";
             require_once('views/loginView.phtml');
         }else{
-            $error = "Error al registrar el usuario";
             require_once('views/registerView.phtml');
         }
         exit();
