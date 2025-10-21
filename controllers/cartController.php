@@ -3,15 +3,14 @@
 
 // ver carrito
 
-if(isset($_GET['action']) && $_GET['action'] == 'cart'){
+if(isset($_GET['action']) && $_GET['action'] == 'showCart'){
     
 
     $idUser = $_SESSION['user']->getId();
     $cart = CartRepository::getCartByUser($idUser);
 
     if($cart){
-        $idCart=$cart['id'];
-        $cartItems= CartRepository::getItems($idCart);
+        $cartItems= CartRepository::getItems($cart->getId());
     }else{
         $cartItems = [];
     }
