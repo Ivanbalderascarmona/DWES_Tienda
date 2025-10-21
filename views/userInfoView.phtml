@@ -7,13 +7,22 @@
     <link rel="stylesheet" href="public/css/style.css">
 </head>
 <body class="user-info-page">
-    <h1>Detalles de usuario</h1>
+    <header>
+        <h1>Detalles de usuario</h1>
+    </header>
+
+    <a class="main-link" href="index.php">Página principal</a> 
     <div class="user-info-container">
-        <img src="public/img/<?php echo $_SESSION['user']->getAvatar(); ?>" alt="avatar">
+        <img src="public/img/<?php if($_SESSION['user']->getAvatar()){
+            echo ''.$_SESSION['user']->getUsername().''.$_SESSION['user']->getAvatar().'';
+        }else{
+            echo 'default.png';
+        }
+        ?>" alt="avatar">
         <h2><?php echo $_SESSION['user']->getUsername(); ?></h2>
         <p><?php echo $_SESSION['user']->getEmail(); ?></p>
-        <a class="logout-link" href="index.php?logout=true">Cerrar sesión</a>
+        <a class="logout-link" href="index.php?logout=1">Cerrar sesión</a>
     </div>
-    <a class="main-link" href="index.php">Página principal</a>
+    
 </body>
 </html>

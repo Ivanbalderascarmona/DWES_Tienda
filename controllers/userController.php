@@ -19,7 +19,18 @@ if(isset($_GET['action']) && $_GET['action']=='login'){
     exit();
 }
 
-//register user
+//profile view
+if(isset($_GET['action']) && $_GET['action']=='profile' ){
+    if($_SESSION['user']!=false){
+        require_once('views/userInfoView.phtml');
+    }else{
+        require_once('views/loginView.phtml');
+    }
+    exit();
+}
+
+
+//register
 if(isset($_GET['action']) && $_GET['action']=='saveRegister'){
     if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && !empty($_FILES['avatar'])){
 
@@ -35,15 +46,15 @@ if(isset($_GET['action']) && $_GET['action']=='saveRegister'){
 }
 
 //login
-if(isset($_POST['username']) && isset($_POST['password'])){
+if(isset($_POST['username']) && isset($_POST['password']) && isset($_GET['action']) && $_GET['action']=='doLogin'){
     if($_SESSION['user']=UserRepository::login($_POST['username'],$_POST['password'])){
         require_once('views/mainView.phtml');
-        exit();
     }else{
         require_once('views/loginView.phtml');
-        exit();
     }
+    exit();
 }
+
 
 //default view
 require_once('views/mainView.phtml');

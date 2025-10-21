@@ -1,16 +1,25 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="login-page">
 
-<h1>LOGIN</h1>
+    <div class="login-container">
+        <h1>Iniciar sesión</h1>
 
-<form action="index.php?" method="POST">
-<input type="text" name="username" placeholder="nombre de usuario">
-<input type="password" name="password" placeholder="contraseña">
-<input type="submit" value="Iniciar sesión">
-</form>
-<a href="index.php?c=user&action=register">¿No tienes cuenta? ¡Regístrate!</a>
-<a class="login-link" href="index.php">Página principal</a>
+        <form class="login-form" action="index.php?action=doLogin" method="POST">
+            <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="submit" value="Entrar">
+        </form>
 
+        <a class="register-link-login" href="index.php?c=user&action=register">¿No tienes cuenta? ¡Regístrate!</a>
+        <a class="main-link-login" href="index.php">← Volver a la página principal</a>
+    </div>
 
 </body>
 </html>
