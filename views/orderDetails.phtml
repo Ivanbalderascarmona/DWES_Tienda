@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos del Pedido</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="order-details-page">
+
+    <h1>Productos del Pedido #<?= $idOrder; ?></h1>
+
+    <div class="products-container">
+        <?php foreach ($products as $product): ?>
+            <div class="product-card">
+                <img src="public/img/<?= $product['image']; ?>" alt="<?= $product['productname']; ?>">
+                <div>
+                    <h2><?= $product['productname']; ?></h2>
+                    <p>Descripción: <?= $product['description']; ?></p>
+                    <p>Precio: <?= $product['price']; ?> €</p>
+                    <p>Cantidad: <?= $product['amount']; ?></p>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <a href="index.php?c=order&action=history" class="back-to-orders">← Volver al historial</a>
+
+</body>
+</html>

@@ -68,18 +68,38 @@ class CartRepository {
     // para el historial de pedidos
     public static function getOrdersByUser($idUser){
         $db= Connection::connect();
-        $q = 'SELECT * FROM Cart WHERE idUser = "'.$idUser.'" AND pagado = 1 ORDER BY fecha DESC';
+        $q = 'SELECT * FROM cart WHERE idUser = "'.$idUser.'" AND state = 1 ORDER BY datetime DESC';
         $result = $db->query($q);
         $orders=array();
         while( $row=$result->fetch_assoc() ){
-            $orders[] =[
-                'id'=>$row['id'],
-                'precio' => $row['precio'],
-                'fecha' => $row['fecha'],
-            ];
+            $orders[] =[ 'id'=>$row['id'],'totalPrice' => $row['totalPrice'],'datetime' => $row['datetime'] ];
         }
         return $orders;
     }
+
+    public static function getOrderById($idCart){
+        $db= Connection::connect();
+        $q= "SELECT * FROM cart WHERE id = ".$idCart;
+        $result= $db->query($q);
+        if( $row=$result->fetch_assoc() ){
+            return new Cart($row['id'], $row['idUser'], $row['totalPrice'], $row['datetime'], $row['state']);
+        }else{
+            return false;
+        }
+    }
+
+    public static function getProductsByCart($idCart){
+        $db= Connection::connect();
+        $q= "SELECT p.id, p.productname, p.description, p.price, p.image, cd.amount FROM cartdetails cd INNER JOIN product p ON cd.idProduct = p.id WHERE cd.idCart = ".$idCart;
+        $result= $db->query($q);
+        $products=array();
+        while( $row=$result->fetch_assoc() ){
+            $products[] = ['id'=>$row['id'],'productname'=>$row['productname'],'description'=>$row['description'],'price'=>$row['price'],'image'=>$row['image'],'amount'=>$row['amount']];
+        }
+        return $products;
+    }
+
+
 }
 
 ?>
