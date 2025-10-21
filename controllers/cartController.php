@@ -33,7 +33,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'pagarCarrito'){
     $cart = CartRepository::getCartByUser($idUser);
 
     if($cart){
-        $idCart=$cart['id'];
+        $idCart=$cart->getId();
         CartRepository::payCart($idCart);
     }
 
