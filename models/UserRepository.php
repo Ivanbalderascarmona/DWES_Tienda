@@ -6,7 +6,7 @@ class UserRepository{
         $q = 'SELECT * FROM users WHERE username="'.$username.'" AND password="'.md5($password).'"';
         $result = $db->query($q);
         if($row = $result->fetch_assoc()){
-            return new User($row['id'],$row['username'],$row['role'], $row['avatar']);
+            return new User($row['id'],$row['username'],$row['email'], $row['role'], $row['avatar']);
         }else{
             return false;
         }
