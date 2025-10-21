@@ -5,6 +5,7 @@ require_once("models/CartDetails.php");
 require_once("models/Cart.php");
 require_once("models/Products.php");
 require_once("models/UserRepository.php");
+require_once("helpers/FileHelper.php");
 
 session_start();
 
