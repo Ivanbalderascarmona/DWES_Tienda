@@ -4,15 +4,21 @@
 //ver producto
 if (isset($_GET['action']) && $_GET['action'] == 'viewProduct'){
     $idProduct= $_GET['id'];
-    $product= ProductsRepository::getProductById($idProduct);
-    if($product){
-        require_once('views/productView.phtml');
+    
+    if($idProduct){
+        $product= ProductsRepository::getProductById($idProduct);
+        if($product){
+            require_once('views/productView.phtml');
+        }else{
+            echo "Producto no encontrado";
+        }
     }else{
-        echo "Producto no encontrado";
+        echo "ID de producto no proporcionado";
     }
-    exit();
 
 }
+
+
 
 //añadir al carrito
 if(isset($_GET['action']) && $_GET['action'] == 'addToCart'){
