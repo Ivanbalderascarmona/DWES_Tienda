@@ -3,23 +3,36 @@
 
 <h1>CARRITO</h1>
 
-<?php
-    if (isset($cartItems) && count($cartItems) > 0) {
-        foreach ($cartItems as $item) {
-            echo "<li>" . $item->getName(); 
-            echo "Precio: " . $item->getPrice() . "</li>";
-        }
-?>
+        <?php $cartItems= CartRepository::getItems($cart->getId()); ?>
+        <?php if (isset($cartItems) && count($cartItems) > 0): ?>
+            <?php foreach ($cartItems as $cartItem): ?>
+                <div class="product-card">
 
-<form action ="index.php?c=cart&action=pagarCarrito" method="POST">
-    <input type="submit" value="Pagar carrito">
-</form>
+                    <div class="product-image">
+                        <img src="public/img/<?= $cartItem->getImage() ?>" alt="<?= $cartItem->getName() ?>">
+                    </div>
 
-<?php
-    } else {
-        echo "<p>El carrito está vacío.</p>";
-    }
-?>
+                    <div class="product-info">
+                        <h2>
+                            <a href="index.php?c=product&action=viewProduct&id=<?= $cartItem->getId() ?>">
+                                <?php echo $cartItem->getName(); ?>
+                            </a>
+                        </h2>
+
+                        <p><?php echo $cartItem->getDescription(); ?></p>
+                        <p class="price">Precio: $<?php echo $cartItem->getPrice(); ?></p>
+                        <p class="stock">Stock: <?php echo $cartItem->getStock(); ?></p>
+
+                        
+                    </div>
+
+                </div>
+
+
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p>No hay productos en el carrito.</p>
+        <?php endif; ?>
 
 <p><a href="index.php?c=product&action=volverTienda">Volver a la tienda</a></p>
 

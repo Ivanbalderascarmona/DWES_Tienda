@@ -31,8 +31,8 @@ if(isset($_GET['action']) && $_GET['action'] == 'addToCart'){
         CartRepository::createCart($idUser);
         $cart=CartRepository::getCartByUser($idUser);
     }
-    $idCart=$cart['id'];
-    CartRepository::addItem($idCart,$idProduct,1);
+    
+    CartRepository::addItem($cart->getId(),$idProduct,1);
     
     header('location: index.php');
     exit();
