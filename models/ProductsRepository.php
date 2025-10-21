@@ -13,6 +13,18 @@ class ProductsRepository {
         return $products;
     }
 
+    public static function searchProductByName($name){
+        $db=Connection::connect();
+        $name = $db->real_escape_string($name);
+        $q="SELECT * FROM product WHERE productname LIKE '%$name%'";
+        $result=$db->query($q);
+        $products =[];
+        while($row = $result->fetch_assoc()){
+            $products[] = new Products($row['id'], $row['productname'], $row['description'], $row['stock'], $row['type'], $row['price'],$row['image']);
+        }
+        return $products;
+    }
+
     public static function getProductById($idProduct){
         $db=Connection::connect();
         $idProduct = intval($idProduct);

@@ -15,6 +15,17 @@ if (isset($_GET['action']) && $_GET['action'] == 'viewProduct'){
     }else{
         echo "ID de producto no proporcionado";
     }
+}
+
+// buscar producto por nombre
+if(isset($_GET['action']) && $_GET['action'] == 'searchProduct'){
+    if(isset($_POST['q'])){
+        $nombreProducto = $_POST['q'].trim("");
+        $products = ProductsRepository::searchProductByName($nombreProducto);
+        header('location: index.php?c=product&action=viewProduct&id='.$products[0]->getId() );
+        exit();
+    }
+    
 
 }
 

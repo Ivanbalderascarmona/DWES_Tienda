@@ -10,6 +10,10 @@ if(isset($_GET['action']) && $_GET['action'] == 'showCart'){
     $cart = CartRepository::getCartByUser($idUser);
 
     if($cart){
+        $amounts = [];
+        foreach(CartRepository::getItems($cart->getId()) as $product){
+            $amounts[$product->getId()] = CartRepository::getAmountByProduct($cart->getId(), $product->getId());
+        }
         $cartItems= CartRepository::getItems($cart->getId());
     }else{
         $cartItems = [];

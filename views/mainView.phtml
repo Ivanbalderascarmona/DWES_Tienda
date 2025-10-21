@@ -16,7 +16,7 @@
 
     <nav>
         <div class="nav-left">
-            <form class="search-form" action="index.php?c=product&action=viewProduct" method="POST">
+            <form class="search-form" action="index.php?c=product&action=searchProduct" method="POST">
                 <input type="text" name="q" placeholder="Buscar productos...">
                 <button type="submit">🔍</button>
             </form>
@@ -60,7 +60,7 @@
                         </h2>
 
                         <p><?php echo $product->getDescription(); ?></p>
-                        <p class="price">Precio: $<?php echo $product->getPrice(); ?></p>
+                        <p class="price">Precio: <?php echo $product->getPrice(); ?>€</p>
                         <p class="stock">Stock: <?php echo $product->getStock(); ?></p>
 
                         <a href="index.php?c=product&action=addToCart&id=<?php echo $product->getId(); ?>" class="add-to-cart">
