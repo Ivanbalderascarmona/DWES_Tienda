@@ -13,15 +13,18 @@ class ProductsRepository {
         return $products;
     }
 
-    public static function getProductById($id){
+    public static function getProductById($idProduct){
         $db=Connection::connect();
-        $q="SELECT * FROM product WHERE id = $id";
+        $idProduct = intval($idProduct);
+        $q="SELECT * FROM product WHERE id = $idProduct";
         $result=$db->query($q);
         if($row=$result->fetch_assoc()){
             return new Products($row['id'], $row['productname'], $row['description'], $row['stock'], $row['type'], $row['price'],$row['image']);
         }
         return null;
     }
+    
+
 
     // -- admin --
     // public static function addProduct($name,$description,$stock,$type,$price){
