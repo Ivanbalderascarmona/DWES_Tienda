@@ -4,13 +4,9 @@
 <h2><?= $product->getName() ?></h2>
 
 <?php
-    foreach ($productos as $producto) {
-        echo "<div>";
-        echo "<h3>" . $producto->getName() . "</h3>";
-        echo "<p>Precio: " . $producto->getPrice() . "</p>";
-        echo "<p>Descripción: " . $producto->getDescription() . "</p>";
-        echo "</div>";
-    }
+    echo "Nombre del producto: ".$product->getName()."<br>";
+    echo "Precio: ".$product->getPrice()."<br>";
+    echo "Descripción: ".$product->getDescription()."<br>";
 ?>
 
 <form action="index.php?c=product" method="POST">

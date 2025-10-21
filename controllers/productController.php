@@ -1,5 +1,6 @@
 <?php
 
+
 //ver producto
 if (isset($_GET['action']) && $_GET['action'] == 'viewProduct'){
     $idProduct= $_GET['id'];
@@ -31,5 +32,18 @@ if(isset($_GET['action']) && $_GET['action'] == 'addToCart'){
     exit();
 }
 
+// - admin -
+
+
+// crear producto
+
+
+// quitar producto
+
+
+// actualizar stock de producto
+
+
+// para añadir foto al producto -> FileHelper
 
 ?>

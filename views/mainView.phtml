@@ -9,6 +9,9 @@
 
 </head>
 <body>
+    <?php 
+        $products= ProductsRepository::getAllProducts();
+    ?>
     <header>
         <h1>🛍️ Bienvenido a la Tienda</h1>
     </header>
@@ -26,35 +29,50 @@
                 <li><a href="index.php?action=profile"><i class="fa-solid fa-user"></i> Perfil</a></li>
             </ul>
         </div>
-        <?php if ($_SESSION['user'] === false) { 
-            echo '  <ul class="auth-menu">
-                        <li><a href="index.php?c=user&action=login">Iniciar Sesión</a></li>
-                        <li><a href="index.php?c=user&action=register">Registrarse</a></li>
-                    </ul>';
-            }else{ 
-                echo '  <ul class="auth-menu">
-                            <li><a href="index.php?c=user&logout=1">Cerrar Sesión</a></li>
-                        </ul>';
-            }?>
-            
+
+        <ul class="auth-menu">
+            <li><a href="index.php?c=user&action=login">Iniciar Sesión</a></li>
+            <li><a href="index.php?c=user&action=register">Registrarse</a></li>
+        </ul>
     </nav>
 
+
     <main>
-        <div class="products">
-            
-            <?php if (isset($products) && count($products) > 0): ?>
+    <div class="products">
+
+        <?php if (isset($products) && count($products) > 0): ?>
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
-                    <h2><?php echo htmlspecialchars($product->getName()); ?></h2>
-                    <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
-                    <p>Precio: $<?php echo number_format($product->getPrice(), 2); ?></p>
-                    <p>Stock: <?php echo intval($product->getStock()); ?></p>
-                    <button>Añadir al carrito</button>
+
+                    <div class="product-image">
+                        <img src="<?= $product->getImage() ?>" alt="<?= $product->getName() ?>">
+                    </div>
+
+                    <div class="product-info">
+                        <h2>
+                            <a href="index.php?action=viewProduct&id=<?= $product->getId() ?>">
+                                <?php echo $product->getName(); ?>
+                            </a>
+                        </h2>
+
+                        <p><?php echo $product->getDescription(); ?></p>
+                        <p class="price">Precio: $<?php echo $product->getPrice(); ?></p>
+                        <p class="stock">Stock: <?php echo $product->getStock(); ?></p>
+
+                        <a href="index.php?action=addToCart&id=<?php echo $product->getId(); ?>" class="add-to-cart">
+                            Añadir al Carrito
+                        </a>
+                    </div>
+
                 </div>
+
+
             <?php endforeach; ?>
-            <?php else: ; ?>
-                <p>No hay productos disponibles.</p>
-            <?php endif; ?>
-    </main>
+        <?php else: ?>
+            <p>No hay productos disponibles.</p>
+        <?php endif; ?>
+    </div>
+</main>
+
 </body>
 </html>
