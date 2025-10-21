@@ -1,40 +1,44 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="cart-page">
 
-<h1>CARRITO</h1>
+    <h1>🛒 Carrito de compras</h1>
 
-        <?php $cartItems= CartRepository::getItems($cart->getId()); ?>
-        <?php if (isset($cartItems) && count($cartItems) > 0): ?>
-            <?php foreach ($cartItems as $cartItem): ?>
+    <?php $products = CartRepository::getItems($cart->getId()); ?>
+    <?php if (isset($products) && count($products) > 0): ?>
+        <div class="cart-container">
+            <?php foreach ($products as $product): ?>
                 <div class="product-card">
-
                     <div class="product-image">
-                        <img src="public/img/<?= $cartItem->getImage() ?>" alt="<?= $cartItem->getName() ?>">
+                        <img src="public/img/<?= $product->getImage() ?>" alt="<?= $product->getName() ?>">
                     </div>
 
                     <div class="product-info">
                         <h2>
-                            <a href="index.php?c=product&action=viewProduct&id=<?= $cartItem->getId() ?>">
-                                <?php echo $cartItem->getName(); ?>
+                            <a href="index.php?c=product&action=viewProduct&id=<?= $product->getId() ?>">
+                                <?= $product->getName(); ?>
                             </a>
                         </h2>
-
-                        <p><?php echo $cartItem->getDescription(); ?></p>
-                        <p class="price">Precio: $<?php echo $cartItem->getPrice(); ?></p>
-                        <p class="stock">Stock: <?php echo $cartItem->getStock(); ?></p>
-
-                        
+                        <p><?= $product->getDescription(); ?></p>
+                        <p class="price">💶 <?= $product->getPrice(); ?> €</p>
+                        <p class="stock">Cantidad: <?= $amounts[$product->getId()]; ?></p>
                     </div>
-
                 </div>
-
-
             <?php endforeach; ?>
-        <?php else: ?>
-            <p>No hay productos en el carrito.</p>
-        <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <p class="empty-cart">🛍️ No hay productos en el carrito.</p>
+    <?php endif; ?>
 
-<p><a href="index.php?c=product&action=volverTienda">Volver a la tienda</a></p>
+    <div class="cart-footer">
+        <a href="index.php" class="back-to-shop">← Volver a la tienda</a>
+    </div>
 
 </body>
 </html>

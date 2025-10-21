@@ -31,9 +31,7 @@
         <p class="price">Precio: $<?php echo $product->getPrice(); ?></p>
         <p class="stock">Stock: <?php echo $product->getStock(); ?></p>
 
-        <form action="index.php?action=addToCart&id=<?= $product->getId() ?>" method="POST">
-            <input type="submit" name="addToCart" value="Añadir al carrito" class="add-to-cart-btn">
-        </form>
+        <a href="index.php?c=product&action=addToCart&id=<?php echo $product->getId(); ?>" class="add-to-cart-btn">Añadir al Carrito</a>
     </div>
 
 </body>

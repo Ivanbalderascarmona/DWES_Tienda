@@ -19,13 +19,24 @@ class CartRepository {
         }
     }
 
+    public static function getAmountByProduct($idCart, $idProduct){
+        $db=Connection::connect();
+        $q='SELECT * FROM cartdetails WHERE idCart = "'.$idCart.'" AND idProduct = "'.$idProduct.'"';
+        $result = $db->query($q);
+        if($row = $result->fetch_assoc()){
+            return $row['amount'];
+        }else{
+            return 0;
+        }
+    }
+
     public static function getItems($idCart){
         $db= Connection::connect();
-        $q= "SELECT p.id, p.productname, p.description, p.price, cd.amount FROM cartdetails cd INNER JOIN Product p ON cd.idProduct = p.id WHERE cd.idCart = ".$idCart;
+        $q= "SELECT p.id, p.productname, p.description, p.price, p.image, cd.amount FROM cartdetails cd INNER JOIN Product p ON cd.idProduct = p.id WHERE cd.idCart = ".$idCart;
         $result= $db->query($q);
         $items=array();
         while( $row=$result->fetch_assoc() ){
-            $items[] = new Products($row['idProduct'], $row['productname'], $row['description'], $row['price'], null, null, null);
+            $items[] = new Products($row['id'], $row['productname'], $row['description'], null, null, $row['price'],$row['image']);
         }
         return $items; 
     }
