@@ -3,7 +3,7 @@
 
 // ver carrito
 
-if(isset($_GET['action']) && $_GET['action'] == 'verCarrito'){
+if(isset($_GET['action']) && $_GET['action'] == 'cart'){
     
 
     $idUser = $_SESSION['user']->getId();
