@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalled de usuario</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="user-info-page">
+    <h1>Detalles de usuario</h1>
+    <div class="user-info-container">
+        <img src="public/img/<?php echo $_SESSION['user']->getAvatar(); ?>" alt="avatar">
+        <h2><?php echo $_SESSION['user']->getUsername(); ?></h2>
+        <p><?php echo $_SESSION['user']->getEmail(); ?></p>
+        <a class="logout-link" href="index.php?logout=true">Cerrar sesión</a>
+    </div>
+    <a class="main-link" href="index.php">Página principal</a>
+</body>
+</html>

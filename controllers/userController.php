@@ -26,7 +26,7 @@ if(isset($_GET['action']) && $_GET['action']=='saveRegister'){
         FileHelper::fileHandler($_FILES['avatar']['tmp_name'],'public/img/'.$_POST['username'].$_FILES['avatar']['name']);
         UserRepository::register($_POST['username'],$_POST['password'], $_POST['email'],$_FILES['avatar']['name']);
     }
-    if(isset($_POST['username']) && isset($_POST['password'])){
+    if(isset($_POST['username']) && isset($_POST['password'] ) && isset($_POST['email'])){
         UserRepository::register($_POST['username'],$_POST['password'],$_POST['email'], 'default.png');
     }
     
