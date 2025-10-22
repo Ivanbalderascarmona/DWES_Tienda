@@ -267,6 +267,22 @@ body.user-info-page {
     color: #e0e0ff;
 }
 
+/* Enlace a Mis Pedidos */
+.history-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: white;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.history-link:hover {
+    color: #e0e0ff;
+}
+
+
 /* Animación de entrada */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -667,6 +683,185 @@ body.cart-page h1 {
 }
 
 .back-to-shop:hover {
+    background-color: #3730a3;
+    transform: scale(1.05);
+}
+
+
+/* ====== HISTORIAL DE PEDIDOS ====== */
+body.order-history-page {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 2rem 1rem;
+    color: #333;
+}
+
+/* Título principal */
+body.order-history-page h1 {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor de cada pedido */
+.order-card {
+    background-color: white;
+    max-width: 600px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover sobre la tarjeta */
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}
+
+/* Títulos dentro de la tarjeta */
+.order-card h2 {
+    color: #4f46e5;
+    margin-bottom: 0.5rem;
+}
+
+/* Texto dentro de la tarjeta */
+.order-card p {
+    color: #555;
+    margin: 0.3rem 0;
+    font-size: 1rem;
+}
+
+.order-card-link { text-decoration: none; }
+.order-card-link .order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(79,70,229,0.3);
+}
+
+
+/* Enlace a la página principal */
+.order-history-page a {
+    display: inline-block;
+    text-align: center;
+    margin: 2rem auto;
+    color: white;
+    text-decoration: none;
+    background-color: #4f46e5;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.order-history-page a:hover {
+    background-color: #3730a3;
+    transform: scale(1.05);
+}
+
+/* Mensaje si no hay pedidos */
+.empty-orders {
+    text-align: center;
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 3rem;
+}
+
+
+/* ====== DETALLES DE PRODUCTOS DEL PEDIDO ====== */
+body.order-details-page {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 2rem 1rem;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Título principal */
+body.order-details-page h1 {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Contenedor de productos con grid */
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 220px); /* ancho fijo de cada tarjeta */
+    justify-content: center; /* centra las tarjetas horizontalmente */
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto 2rem auto;
+}
+
+/* Tarjeta de cada producto */
+body.order-details-page .product-card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    width: 220px; /* ancho fijo */
+    height: 280px; /* altura fija para que sean recuadros uniformes */
+}
+
+/* Hover en la tarjeta */
+body.order-details-page .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(79,70,229,0.2);
+}
+
+/* Imagen del producto */
+body.order-details-page .product-card img {
+    width: 100px;   /* más pequeña */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+/* Nombre del producto */
+body.order-details-page .product-card h2 {
+    color: #4f46e5;
+    margin: 0.3rem 0;
+    text-align: center;
+}
+
+/* Texto de descripción, precio y cantidad */
+body.order-details-page .product-card p {
+    margin: 0.2rem 0;
+    color: #555;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Botón volver al historial */
+body.order-details-page .back-to-orders {
+    display: block;
+    width: 180px;
+    text-align: center;
+    margin: 2rem auto 1rem auto;
+    color: white;
+    text-decoration: none;
+    background-color: #4f46e5;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+body.order-details-page .back-to-orders:hover {
     background-color: #3730a3;
     transform: scale(1.05);
 }

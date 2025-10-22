@@ -1,10 +1,36 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Pedidos</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="order-history-page">
 <h1>Historial de Pedidos</h1>
 
+<?php
+if($orders){
+?>
+    <?php foreach ($orders as $order): ?>
+    <a href="index.php?c=order&action=details&id=<?= $order['id']; ?>" class="order-card-link">
+        <div class="order-card">
+            <h2>Pedido #<?= $order['id']; ?></h2>
+            <p>Precio Total: <?= $order['totalPrice']; ?> €</p>
+            <p>Fecha: <?= $order['datetime']; ?></p>
+        </div>
+    </a>
+<?php endforeach; ?>
+<?php
+}else{
+    echo '<p class="empty-orders">🛍️ No tienes pedidos todavía.</p>';
+}
+?>
 
+<div class="back-links">
+    <a href="index.php" class="back-to-shop">← Volver a la tienda</a>
+</div>
 
-<p><a href="index.php?c=product&action=volverTienda">Volver a la tienda</a></p>
 
 </body>
 </html>

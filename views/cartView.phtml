@@ -10,7 +10,12 @@
 
     <h1>🛒 Carrito de compras</h1>
 
-    <?php $products = CartRepository::getItems($cart->getId()); ?>
+    <?php 
+    $products = [];
+    if ($cart) {
+        $products = CartRepository::getItems($cart->getId());
+    }
+    ?>
     <?php if (isset($products) && count($products) > 0): ?>
         <div class="cart-container">
             <?php foreach ($products as $product): ?>

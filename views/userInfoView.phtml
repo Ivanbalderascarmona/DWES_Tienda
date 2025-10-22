@@ -12,6 +12,7 @@
     </header>
 
     <a class="main-link" href="index.php">Página principal</a> 
+    <a class="history-link" href="index.php?c=order&action=history">Mis Pedidos</a> 
     <div class="user-info-container">
         <img src="public/img/<?php if($_SESSION['user']->getAvatar()){
             echo ''.$_SESSION['user']->getUsername().''.$_SESSION['user']->getAvatar().'';
