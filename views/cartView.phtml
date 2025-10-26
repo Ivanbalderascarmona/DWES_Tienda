@@ -43,6 +43,9 @@
 
     <div class="cart-footer">
         <a href="index.php" class="back-to-shop">← Volver a la tienda</a>
+        <?php if(isset($products) && count($products) > 0){?>
+            <a href="index.php?c=cart&action=pagarCarrito" class="back-to-shop">Pagar carrito</a>
+        <?php } ?>
     </div>
 
 </body>
