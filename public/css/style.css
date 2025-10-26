@@ -357,19 +357,21 @@ body.user-info-page {
     color: #999;
 }
 
-button.add-to-cart {
+.product-info .add-to-cart {
     margin-top: 10px;
     padding: 8px 12px;
     border: none;
     border-radius: 5px;
-    background-color: #2c7;
+    background-color: #0077cc;
     color: #fff;
     cursor: pointer;
     transition: background 0.2s;
+
 }
 
-button.add-to-cart:hover {
-    background-color: #26a;
+.product-info .add-to-cart:hover {
+    background-color: #005fa3;
+    text-decoration: none;
 }
 
 /* === Página de producto individual === */
@@ -470,6 +472,7 @@ body.product-page .add-to-cart-btn {
 
 body.product-page .add-to-cart-btn:hover {
     background-color: #005fa3;
+    text-decoration: none;
 }
 
 

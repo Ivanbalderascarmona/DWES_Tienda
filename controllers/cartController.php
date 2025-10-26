@@ -5,6 +5,10 @@
 
 if(isset($_GET['action']) && $_GET['action'] == 'showCart'){
     
+    if($_SESSION['user'] === false){
+        require_once('views/loginView.phtml');
+        exit();
+    }
 
     $idUser = $_SESSION['user']->getId();
     $cart = CartRepository::getCartByUser($idUser);

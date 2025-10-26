@@ -62,10 +62,14 @@
                         <p><?php echo $product->getDescription(); ?></p>
                         <p class="price">Precio: <?php echo $product->getPrice(); ?>€</p>
                         <p class="stock">Stock: <?php echo $product->getStock(); ?></p>
-
-                        <a href="index.php?c=product&action=addToCart&id=<?php echo $product->getId(); ?>" class="add-to-cart">
-                            Añadir al Carrito
-                        </a>
+                        <?php 
+                            if(!$_SESSION['user'] === false){
+                                echo    '<a href="index.php?c=product&action=addToCart&id='.$product->getId().'" class="add-to-cart">
+                                            Añadir al Carrito
+                                        </a>';
+                            }
+                        ?>
+                        
                     </div>
 
                 </div>

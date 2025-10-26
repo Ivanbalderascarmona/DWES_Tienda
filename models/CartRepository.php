@@ -10,7 +10,7 @@ class CartRepository {
 
     public static function getCartByUser($idUser){
         $db=Connection::connect();
-        $q='SELECT * FROM cart WHERE idUser = "'.$idUser.'"';
+        $q='SELECT * FROM cart WHERE state = 0 AND idUser = "'.$idUser.'"';
         $result = $db->query($q);
         if($row = $result->fetch_assoc()){
             return new Cart($row['id'], $row['idUser'], $row['totalPrice'],$row['datetime'], $row['state']);
@@ -61,7 +61,7 @@ class CartRepository {
 
     public static function payCart($idCart){
         $db=Connection::connect();
-        $q='UPDATE Cart SET pagado = TRUE WHERE id = "'.$idCart.'"';
+        $q='UPDATE Cart SET state = 1, datetime = NOW()  WHERE id = "'.$idCart.'"';
         $db->query($q);
     }
 
