@@ -51,12 +51,47 @@ if(isset($_GET['action']) && $_GET['action'] == 'addToCart'){
 
 // - admin -
 
+// vista añadir producto
+if(isset($_GET['action']) && $_GET['action'] == 'showAddProduct' && $_SESSION['user']->getRole() == 1){
+    require_once('views/addProduct.phtml');
+    exit();
+}
 
 // crear producto
+if(isset($_GET['action']) && $_GET['action'] == 'addProduct'){
+    if(!isset($_POST['name']) || !isset($_POST['description']) || !isset($_POST['price']) || !isset($_POST['stock']) || !isset($_POST['type']) || !isset($_POST['visible']) || !isset($_FILES['image'])){
+        require_once('views/addProduct.phtml');
+        exit();
+    }
+    FileHelper::fileHandler($_FILES['image']['tmp_name'],'public/img/'.$_FILES['image']['name']);
+    $id = ProductsRepository::addProduct($_POST['name'],$_POST['description'],$_POST['stock'],$_POST['type'],$_POST['price'],$_FILES['image']['name']);
+    header('location: index.php?c=product&action=viewProduct&id='.$id);
+    exit();
+}
+
+// actualizar producto
+if(isset($_GET['action']) && $_GET['action'] == 'updateProduct'){
+    if(!isset($_POST['name']) || !isset($_POST['description']) || !isset($_POST['price']) || !isset($_POST['stock']) || !isset($_POST['type']) || !isset($_FILES['image'])){
+        require_once('views/updateProduct.phtml');
+        exit();
+    }
+    FileHelper::fileHandler($_FILES['image']['tmp_name'],'public/img/'.$_FILES['image']['name']);
+    $id = $_GET['id'];
+    ProductsRepository::updateProduct($id,$_POST['name'],$_POST['description'],$_POST['stock'],$_POST['type'],$_POST['price'],$_FILES['image']['name']);
+    header('location: index.php?c=product&action=viewProduct&id='.$id);
+    exit();
+}
 
 
 // quitar producto
-
+if(isset($_GET['action']) && $_GET['action'] == 'deleteProduct'){
+    if(isset($_GET['id'])){
+        $id = $_GET['id'];
+        ProductsRepository::deleteProduct($id);
+        header('location: index.php');
+        exit();
+    }
+}
 
 // actualizar stock de producto
 

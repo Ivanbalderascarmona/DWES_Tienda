@@ -30,4 +30,10 @@ class UserRepository{
         }
         exit();
     }
+    
+    public static function isAdmin() {
+        return isset($_SESSION['user']) && $_SESSION['user'] !== false && $_SESSION['user']->getRole() == 1;
+    }
 }
+
+
