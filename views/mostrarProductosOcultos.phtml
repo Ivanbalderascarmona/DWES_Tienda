@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda</title>
+    <title>Mostrar Productos</title>
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
@@ -25,9 +25,9 @@
                 <li><a href="#"><i class="fa-solid fa-list"></i> Categorías</a></li>
                 <li><a href="index.php?c=cart&action=showCart"><i class="fa-solid fa-cart-shopping"></i> Carrito</a></li>
                 <li><a href="index.php?action=profile"><i class="fa-solid fa-user"></i> Perfil</a></li>
+                <li><a href="index.php">Página principal</a></li>
                 <?php if (UserRepository::isAdmin()) { ?>
                     <li><a href="index.php?c=product&action=showAddProduct">Añadir Producto</a></li>
-                    <li><a href="index.php?c=product&action=showProductsInvisible">Productos Ocultos</a></li>
                 <?php } ?>
             </ul>
         </div>
@@ -46,8 +46,8 @@
 
     <main>
     <div class="products">
-            <?php $products= ProductsRepository::getAllProducts();?>
-
+            <?php $products= ProductsRepository::showProductsInvisible();?>
+            
         <?php if (isset($products) && count($products) > 0): ?>
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
@@ -67,27 +67,23 @@
                         <p class="price">Precio: <?php echo $product->getPrice(); ?>€</p>
                         <p class="stock">Stock: <?php echo $product->getStock(); ?></p>
                         <?php 
-                            if(!$_SESSION['user'] === false){
-                                echo    '<a href="index.php?c=product&action=addToCart&id='.$product->getId().'" class="add-to-cart">
-                                            Añadir al Carrito
-                                        </a>';
-                            }
                             if (UserRepository::isAdmin()) { 
                             echo '<a href="index.php?c=product&action=updateProduct&id='.$product->getId().'" class="add-to-cart">Editar Producto</a>';
-                            echo '<a href="index.php?c=product&action=deleteProduct&id='.$product->getId().'" id="delete-product">Eliminar Producto</a>';
+                            echo '<a href="index.php?c=product&action=showProduct"';
                         } ?>
                         
                     </div>
-
+                    
                 </div>
 
 
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No hay productos disponibles.</p>
+            <p>No hay productos ocultos.</p>
         <?php endif; ?>
     </div>
 </main>
 
 </body>
 </html>
+

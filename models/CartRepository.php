@@ -36,7 +36,7 @@ class CartRepository {
         $result= $db->query($q);
         $items=array();
         while( $row=$result->fetch_assoc() ){
-            $items[] = new Products($row['id'], $row['productname'], $row['description'], null, null, $row['price'],$row['image']);
+            $items[] = new Products($row['id'], $row['productname'], $row['description'], null, null, $row['price'],$row['image'],null);
         }
         return $items; 
     }

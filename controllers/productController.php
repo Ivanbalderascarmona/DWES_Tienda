@@ -22,11 +22,11 @@ if(isset($_GET['action']) && $_GET['action'] == 'searchProduct'){
     if(isset($_POST['q'])){
         $nombreProducto = $_POST['q'].trim("");
         $products = ProductsRepository::searchProductByName($nombreProducto);
-        header('location: index.php?c=product&action=viewProduct&id='.$products[0]->getId() );
-        exit();
+        require_once('views/searchProductView.phtml');
+    }else{
+        header('location: index.php');
     }
-    
-
+    exit();
 }
 
 
@@ -57,9 +57,20 @@ if(isset($_GET['action']) && $_GET['action'] == 'showAddProduct' && $_SESSION['u
     exit();
 }
 
+// mostrar productos invisibles
+if(isset($_GET['action']) && $_GET['action']=== "showProductsInvisible"){
+    require_once('views/mostrarProductosOcultos.phtml');
+    exit();
+}
+
+// desocultar producto
+if(isset($_GET['action']) && $_GET['action']=== 'unhideProduct' && isset($_GET['id'])){
+    ProductsRepository::unhideProduct($_GET['id']);
+}
+
 // crear producto
 if(isset($_GET['action']) && $_GET['action'] == 'addProduct'){
-    if(!isset($_POST['name']) || !isset($_POST['description']) || !isset($_POST['price']) || !isset($_POST['stock']) || !isset($_POST['type']) || !isset($_POST['visible']) || !isset($_FILES['image'])){
+    if(!isset($_POST['name']) || !isset($_POST['description']) || !isset($_POST['price']) || !isset($_POST['stock']) || !isset($_POST['type']) || !isset($_FILES['image'])){
         require_once('views/addProduct.phtml');
         exit();
     }
@@ -81,6 +92,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'updateProduct'){
     header('location: index.php?c=product&action=viewProduct&id='.$id);
     exit();
 }
+
 
 
 // quitar producto
