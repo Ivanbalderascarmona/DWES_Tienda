@@ -46,7 +46,16 @@ class CartRepository {
         // Comprobar que el producto existe en el carrito y sumarle 1 si ya esta o añadirlo sino
 
         $q='SELECT * FROM cartdetails WHERE idCart = "'.$idCart.'" AND idProduct = "'.$idProduct.'"';
+        $q3='SELECT stock FROM product WHERE id = '.$idProduct;
         $result = $db->query($q);
+        $result2= $db->query($q3);
+        $rowStock=$result2->fetch_assoc();
+        $stock = $rowStock['stock'];
+
+        if($stock<=0){
+            return "No queda stock de este producto";
+        }
+
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $amount = $row['amount'] + $amount;
@@ -57,11 +66,15 @@ class CartRepository {
             $q='INSERT INTO cartdetails (idCart, idProduct, amount) VALUES ("'.$idCart.'", "'.$idProduct.'" ,"'.$amount.'")';
             $db->query($q);
         }
+
+        $q2='UPDATE product SET stock = stock-1 WHERE id = '.$idProduct;
+        $db->query($q2);
+        
     }
 
     public static function payCart($idCart){
         $db=Connection::connect();
-        $q='UPDATE Cart SET state = 1, datetime = NOW()  WHERE id = "'.$idCart.'"';
+        $q= 'UPDATE cart c JOIN (SELECT SUM(cd.amount*p.price) AS total FROM cartdetails cd JOIN product p ON cd.idProduct = p.id WHERE cd.idCart = "'.$idCart.'") t SET c.totalPrice = t.total, c.state = 1, c.datetime = NOW() WHERE c.id = '.$idCart;
         $db->query($q);
     }
 
