@@ -55,6 +55,34 @@ class ProductsRepository {
         return $db->query($q);
     }
 
+    public static function productSearchByName($name){
+        $db = Connection::Connect();
+        $name = $db->real_escape_string($name);
+        $q='SELECT * FROM product WHERE product.name LIKE %'.$name.'%';
+        $result = $db->query($q);
+        $products =[];
+        while($row = $result->fetch_assoc()){
+            $products[] = new Products($row['id'],$row['productname'],$row['description'], $row['stock'], $row['type'], $row['price'],$row['image'], $row['visible']);
+        }
+        return $products;
+    }
+
+    public static function showProductsInvisible(){
+        $db = Connection::Connect();
+        $q = 'SELECT * FROM product WHERE  visible = 0';
+        $result = $db->query($q);
+        $products =[];
+        while($row = $result->fetch_assoc()){
+            $products[] = new Products($row['id'],$row['productname'],$row['description'], $row['stock'], $row['type'], $row['price'],$row['image'], $row['visible']);
+        }
+        return $products;
+    }
+
+    public static function unhideProduct($id){
+        $db = Connection::Connect();
+        $q = 'UPDATE product SET visible = 1 WHERE id='.$id;
+    }
+
     // -- admin --
     // public static function addProduct($name,$description,$stock,$type,$price){
     //     $db=Connection::connect();
