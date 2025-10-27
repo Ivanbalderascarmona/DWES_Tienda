@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Producto</title>
+    <link rel="stylesheet" href="public/css/style.css">
+</head>
+<body class="add-product-page">
+
+    <div class="add-product-container">
+        <h1>🛍️ Añadir nuevo producto</h1>
+
+        <form class="add-product-form" action="index.php?c=product&action=addProduct" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Nombre del producto" required>
+            <input type="text" name="description" placeholder="Descripción" required>
+            <input type="number" step="0.01" name="price" placeholder="Precio (€)" required>
+            <input type="number" name="stock" placeholder="Stock disponible" required>
+            <input type="text" name="type" placeholder="Categoría" required>
+            <input type="file" name="image" accept="image/*" required>
+
+            <input type="submit" value="Añadir producto">
+        </form>
+
+        <a class="back-link" href="index.php">← Volver a la página principal</a>
+    </div>
+
+</body>
+</html>
